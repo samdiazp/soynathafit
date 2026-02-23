@@ -1,0 +1,16 @@
+{
+  "name": "soynathafit",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/tailwind": "^5.1.4",
+    "astro": "^5.4.0",
+    "tailwindcss": "^3.4.17"
+  }
+}
