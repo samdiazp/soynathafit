@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { terminos } from "../legal";
+import { VIDEO_ID } from "astro:env/client";
 
 const includes = [
   {
@@ -61,10 +62,6 @@ const priceIncludes = [
 ];
 
 const paymentMethods = ["Zelle", "PayPal", "Western Union"];
-
-// Reemplaza con el ID de tu video de YouTube (lo que va después de ?v= en la URL)
-// Ejemplo: https://www.youtube.com/watch?v=dQw4w9WgXcQ → VIDEO_ID = 'dQw4w9WgXcQ'
-const VIDEO_ID = "PRT3sN5klk0";
 ---
 
 <Layout>
