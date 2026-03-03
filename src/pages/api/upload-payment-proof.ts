@@ -1,6 +1,5 @@
 import type { APIRoute } from "astro";
 import { getSupabaseServiceRoleClient } from "../../lib/supabase";
-import { randomUUID } from "crypto";
 
 export const POST: APIRoute = async ({ request }) => {
   try {
@@ -37,7 +36,7 @@ export const POST: APIRoute = async ({ request }) => {
     }
 
     const ext = file.type === "application/pdf" ? "pdf" : file.type.split("/")[1];
-    const fileName = `${Date.now()}-${randomUUID()}.${ext}`;
+    const fileName = `${Date.now()}-${crypto.randomUUID()}.${ext}`;
 
     const supabase = getSupabaseServiceRoleClient();
     const arrayBuffer = await file.arrayBuffer();
@@ -62,9 +61,10 @@ export const POST: APIRoute = async ({ request }) => {
       headers: { "Content-Type": "application/json" },
     });
   } catch (err) {
-    console.error("Upload error:", err);
+    const message = err instanceof Error ? err.message : String(err);
+    console.error("Upload error:", message);
     return new Response(
-      JSON.stringify({ error: "Error al subir el archivo" }),
+      JSON.stringify({ error: message }),
       { status: 500, headers: { "Content-Type": "application/json" } }
     );
   }
