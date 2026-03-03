@@ -6,6 +6,9 @@ export default defineConfig({
   output: "server",
   adapter: vercel(),
   integrations: [tailwind()],
+  security: {
+    checkOrigin: false,
+  },
   env: {
     schema: {
       SUPABASE_URL: envField.string({
