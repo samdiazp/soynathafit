@@ -10,8 +10,8 @@ export default defineConfig({
     schema: {
       SUPABASE_URL: envField.string({
         required: true,
-        context: "client",
-        access: "public",
+        context: "server",
+        access: "secret",
       }),
       SUPABASE_ANON_KEY: envField.string({
         required: true,
