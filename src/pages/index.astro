@@ -66,11 +66,8 @@ const paymentMethods = ["Zelle", "PayPal", "Western Union"];
 
 <Layout>
   <!-- ===== HERO ===== -->
-  <section
-    class="relative overflow-hidden pt-24 pb-12 md:pt-28 md:pb-16"
-    style="background: linear-gradient(90deg, #4f6fe8 0%, #5b21b6 50%, #7c3aed 100%)"
-  >
-    <div class="max-w-5xl mx-auto px-5 md:px-8">
+  <section class="relative overflow-hidden pt-24 pb-12 md:pt-28 md:pb-16">
+    <div class="max-w-4xl mx-auto px-5 md:px-8">
       <!-- Título en pill -->
       <div
         class="rounded-3xl px-6 py-5 mb-10 text-center"
@@ -79,472 +76,573 @@ const paymentMethods = ["Zelle", "PayPal", "Western Union"];
         <h1
           class="font-black text-white uppercase leading-tight text-3xl sm:text-4xl md:text-5xl lg:text-6xl"
         >
-          TRANSFORMA TU CUERPO<br class="hidden sm:block" /> Y MENTE
-          <span
-            class="inline-block ml-2 normal-case not-italic"
-            style="font-family: 'Caveat', cursive; font-weight: 700; font-size: 1em; letter-spacing: 0.01em;"
-          >
-            EN 4 SEMANAS
-          </span>
+          TRANSFORMA TU CUERPO<br class="hidden sm:block" /> Y MENTE EN 4 SEMANAS
         </h1>
       </div>
 
-      <!-- Dos columnas: texto + imagen placeholder -->
-      <div class="grid md:grid-cols-2 gap-8 items-center mb-10">
-        <!-- Izquierda: identidad + descripción -->
-        <div>
-          <div class="mb-5">
-            <p
-              class="font-black text-white leading-none"
-              style="font-size: clamp(3rem, 10vw, 5rem);"
-            >
-              RETO<br />MASIVO
-            </p>
-            <p
-              class="font-light tracking-[0.35em] text-white"
-              style="font-size: clamp(1.5rem, 5vw, 2.5rem);"
-            >
-              ONLINE
-            </p>
-            <p class="text-white/90 font-medium mt-1 flex items-start gap-1">
-              <span class="text-xs leading-none mt-1">by</span>
-              <span class="font-black text-xl leading-none">SōyNathaFit</span>
-            </p>
-          </div>
-          <p class="text-white text-base md:text-lg leading-relaxed">
-            Entrenamiento, nutrición flexible y apoyo mental en un solo programa
-            100% online, diseñado para acompañarte desde cualquier parte del
-            mundo.
-          </p>
+      <!-- Dos columnas: texto + video -->
+      <div class="grid md:grid-cols-2 gap-4 items-end mb-6">
+        <!-- Izquierda: identidad — misma altura que el video -->
+        <div class="aspect-video flex flex-col items-end gap-3">
+          <img
+            src="/hero.png"
+            alt="SōyNathaFit"
+            class="w-full object-contain h-full"
+          />
         </div>
 
         <!-- Derecha: video YouTube -->
         <div
-          class="rounded-2xl overflow-hidden aspect-video shadow-2xl shadow-black/40"
+          class="rounded-2xl border-2 border-white p-2 shadow-2xl shadow-black/40"
         >
-          <iframe
-            src={`https://www.youtube.com/embed/${VIDEO_ID}?rel=0&modestbranding=1`}
-            title="SoyNathaFit – Reto Online Masivo"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
-            class="w-full h-full"></iframe>
-        </div>
-      </div>
-
-      <!-- Tres secciones de info -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-5 mb-10 w-full">
-        <!-- 100% ONLINE -->
-        <div
-          class="rounded-2xl p-4 sm:p-5 flex flex-col md:flex-row items-center md:justify-start gap-2 md:gap-3 min-h-[70px]"
-        >
-          <span
-            class="w-7 h-7 rounded-full bg-white/20 border-2 border-white/60 flex items-center justify-center flex-shrink-0"
-          >
-            <span class="text-white text-xs font-black">✓</span>
-          </span>
-          <div class="text-center md:text-left">
-            <p
-              class="text-white font-black text-md sm:text-lg md:text-base leading-snug"
-            >
-              100% ONLINE
-            </p>
-            <p class="text-white/80 text-base">Acceso internacional</p>
-          </div>
-        </div>
-
-        <!-- DURACIÓN -->
-        <div
-          class="rounded-2xl p-4 sm:p-5 flex flex-col md:flex-row items-center justify-center gap-2 md:gap-3 min-h-[70px]"
-        >
-          <span
-            class="w-7 h-7 rounded-full bg-white/20 border-2 border-white/60 flex items-center justify-center flex-shrink-0"
-          >
-            <span class="text-white text-xs font-black">✓</span>
-          </span>
-          <div class="text-center md:text-left">
-            <p
-              class="text-white font-black text-md sm:text-lg md:text-base leading-snug"
-            >
-              DURACIÓN:
-            </p>
-            <p class="text-white/80 text-base">4 semanas</p>
-          </div>
-        </div>
-
-        <!-- INICIO -->
-        <div
-          class="rounded-2xl p-4 sm:p-5 flex flex-col md:flex-row items-center md:justify-end gap-2 md:gap-3 min-h-[70px]"
-        >
-          <span
-            class="w-7 h-7 rounded-full bg-white/20 border-2 border-white/60 flex items-center justify-center flex-shrink-0"
-          >
-            <span class="text-white text-xs font-black">✓</span>
-          </span>
-          <div class="text-center md:text-left">
-            <p
-              class="text-white font-black text-md sm:text-lg md:text-base leading-snug"
-            >
-              INICIO:
-            </p>
-            <p class="text-white/80 text-base">lunes 2 de marzo</p>
+          <div class="rounded-xl overflow-hidden aspect-video">
+            <iframe
+              src={`https://www.youtube.com/embed/${VIDEO_ID}?rel=0&modestbranding=1`}
+              title="SoyNathaFit – Reto Online Masivo"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+              class="w-full h-full"></iframe>
           </div>
         </div>
       </div>
 
-      <!-- Precio + CTA -->
-      <div class="flex flex-col items-center gap-5">
-        <!-- Oval de precio -->
-        <div class="relative px-2">
-          <div
-            class="border-2 border-white/50 rounded-[50%] px-10 sm:px-16 py-5 sm:py-6 text-center"
-            style="border-radius: 50%/40%; min-width: 260px;"
-          >
-            <p
-              class="text-white/80 text-xs sm:text-sm font-bold uppercase tracking-widest line-through mb-1"
-            >
-              PRECIO ANTES: $53 USD
-            </p>
-            <p
-              class="text-white leading-none"
-              style="font-family: 'Caveat', cursive; font-weight: 700; font-size: clamp(2rem, 8vw, 3.5rem);"
-            >
-              HOY $28 USD
-            </p>
-          </div>
-        </div>
-
-        <!-- Botón CTA -->
-        <a
-          href="#precio"
-          class="bg-white hover:bg-white/90 text-black font-black text-sm sm:text-base uppercase tracking-wide px-10 py-4 rounded-full transition-all hover:scale-[1.03] shadow-xl"
-        >
-          ÚNETE AL RETO AHORA
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== ¿PARA QUIÉN ES? ===== -->
-  <section class="py-16 md:py-24 bg-white">
-    <div class="max-w-4xl mx-auto px-6 text-center">
-      <!-- Título -->
-      <h2
-        class="text-3xl sm:text-4xl md:text-5xl font-black text-[#1e3a5f] uppercase mb-4"
-      >
-        ESTE RETO ES PARA TI SI...
-      </h2>
+      <!-- Descripción centrada debajo del grid -->
       <p
-        class="text-[#1e3a5f]/70 text-base sm:text-lg leading-relaxed max-w-xl mx-auto mb-14"
+        class="text-white font-medium text-xl md:text-2xl leading-snug text-center mx-auto max-w-5xl my-6 md:mt-12"
       >
-        Este programa está diseñado para personas reales que buscan resultados
-        sostenibles, sin extremos ni presiones innecesarias.
+        Entrenamiento, nutrición flexible y apoyo mental en un solo programa
+        100% online, diseñado para acompañarte desde cualquier parte del mundo.
       </p>
 
-      <!-- Fila de 3 -->
-      <div class="grid grid-cols-3 gap-6 sm:gap-10 mb-10">
-        {
-          paraQuien.slice(0, 3).map((item, i) => (
-            <div class="flex flex-col items-center gap-4">
-              <img
-                src={i === 0 ? "/for_you.png" : `/for_you_${i + 1}.png`}
-                alt={item}
-                class="w-20 h-20 sm:w-24 sm:h-24 object-contain"
-              />
-              <p class="text-[#1e3a5f] text-sm sm:text-base leading-snug font-medium">
-                {item}
-              </p>
-            </div>
-          ))
-        }
-      </div>
-
-      <!-- Fila de 2 centrada -->
-      <div class="flex justify-center gap-6 sm:gap-10 mb-14">
-        {
-          paraQuien.slice(3).map((item, i) => (
-            <div class="flex flex-col items-center gap-4 max-w-[160px] sm:max-w-[200px]">
-              <img
-                src={`/for_you_${i + 4}.png`}
-                alt={item}
-                class="w-20 h-20 sm:w-24 sm:h-24 object-contain"
-              />
-              <p class="text-[#1e3a5f] text-sm sm:text-base leading-snug font-medium">
-                {item}
-              </p>
-            </div>
-          ))
-        }
-      </div>
-
-      <!-- Banner inferior naranja -->
-      <div class="bg-[#e8601c] rounded-3xl px-8 py-6 sm:py-7">
-        <p class="text-white font-black text-base sm:text-xl leading-snug">
-          No necesitas estar en tu mejor forma para empezar.
-        </p>
-        <p
-          class="text-white mt-1"
-          style="font-family: 'Caveat', cursive; font-weight: 700; font-size: clamp(1.2rem, 4vw, 1.8rem);"
-        >
-          SOLO NECESITAS DECIDIRTE.
-        </p>
-      </div>
+      <!-- Círculo INFO + PRECIO (mismo ancho que el resto del hero) -->
     </div>
-  </section>
+    <div class="max-w-5xl mx-auto md:mt-16">
+      <!-- El círculo: grande en mobile, más pequeño en desktop -->
+      <div class="w-full md:w-[60%] mx-auto relative">
+        <img src="/hero_price.png" alt="" class="w-full object-contain" />
 
-  <!-- ===== ¿QUÉ INCLUYE? ===== -->
-  <section class="relative py-16 md:py-24 overflow-hidden">
-    <!-- Imagen de fondo -->
-    <img
-      src="/about_us.png"
-      alt=""
-      class="absolute inset-0 w-full h-full object-cover z-0"
-    />
-    <!-- Overlay oscuro -->
-    <div class="absolute inset-0 z-0"></div>
-
-    <div class="relative z-10 max-w-5xl mx-auto px-6">
-      <div class="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
-        <!-- Izquierda: botón -->
-        <div class="flex items-center justify-center">
-          <a
-            href="#precio"
-            class="bg-white hover:bg-white/90 text-black font-black text-base sm:text-lg uppercase tracking-wide px-10 py-4 rounded-full transition-all hover:scale-[1.03] shadow-xl text-center leading-snug"
-          >
-            QUIERO SER PARTE DE LA TRIBU
-          </a>
-        </div>
-
-        <!-- Derecha: título + lista -->
-        <div>
-          <h2
-            class="text-white font-black text-2xl sm:text-3xl md:text-4xl uppercase leading-tight mb-8"
-          >
-            TODO LO QUE NECESITAS, A UN<br /> CLICK DE DISTANCIA
-          </h2>
-          <ul class="space-y-5">
-            {
-              includes.map((item) => (
-                <li class="flex items-start gap-3">
-                  <span class="text-white font-black mt-0.5 flex-shrink-0">
-                    ✓
-                  </span>
-                  <div>
-                    <p class="text-white font-black text-base sm:text-lg uppercase tracking-wide">
-                      {item.title}
-                    </p>
-                    <p class="text-white text-sm sm:text-base mt-0.5 leading-snug">
-                      {item.desc}
-                    </p>
-                  </div>
-                </li>
-              ))
-            }
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== ¿CÓMO FUNCIONA? ===== -->
-  <section
-    class="py-16 md:py-24"
-    style="background: linear-gradient(140deg, #4f6fe8 0%, #5b21b6 50%, #7c3aed 100%)"
-  >
-    <div class="max-w-5xl mx-auto px-6">
-      <h2
-        class="text-white font-black text-2xl sm:text-3xl md:text-4xl uppercase text-center mb-14 tracking-wide"
-      >
-        ¿CÓMO FUNCIONA EL RETO?
-      </h2>
-
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
-        {
-          steps.map((text, i) => (
-            <div class="flex flex-col items-center text-center gap-4">
-              <p class="text-white/80 font-black text-xs uppercase tracking-widest">
-                PASO {i + 1}
-              </p>
-              <img
-                src={i === 0 ? "/how_works.png" : `/how_works_${i + 1}.png`}
-                alt={`Paso ${i + 1}`}
-                class="w-20 h-20 sm:w-24 sm:h-24 object-contain"
-              />
-              <p class="text-white font-black text-xs sm:text-sm uppercase leading-snug">
-                {text}
-              </p>
-            </div>
-          ))
-        }
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== PRECIO ===== -->
-  <section id="precio" class="py-16 md:py-24 relative overflow-hidden bg-white">
-    <!-- Orbe decorativo naranja -->
-    <div
-      class="absolute -top-32 -right-32 w-[500px] h-[500px] bg-orange-200 opacity-40 rounded-full blur-3xl pointer-events-none"
-    >
-    </div>
-    <div
-      class="absolute -bottom-32 -left-32 w-[400px] h-[400px] bg-orange-100 opacity-60 rounded-full blur-3xl pointer-events-none"
-    >
-    </div>
-
-    <div class="relative z-10 max-w-lg mx-auto px-6 text-center">
-      <!-- Badge urgencia -->
-      <div
-        class="inline-flex items-center gap-2 bg-orange-100 border border-orange-300 rounded-full px-4 py-2 mb-6"
-      >
-        <span
-          class="w-2 h-2 bg-[#e8601c] rounded-full animate-pulse flex-shrink-0"
-        ></span>
-        <span class="text-[#e8601c] text-sm font-semibold"
-          >Precio especial por tiempo limitado</span
-        >
-      </div>
-
-      <h2
-        class="text-[#1e3a5f] font-black text-3xl sm:text-4xl md:text-5xl uppercase leading-tight mb-10"
-      >
-        INSCRÍBETE HOY AL<br />RETO ONLINE MASIVO
-      </h2>
-
-      <!-- Card -->
-      <div
-        class="bg-white border border-orange-200 rounded-3xl p-8 sm:p-10 relative overflow-hidden shadow-2xl shadow-orange-100"
-      >
-        <!-- Borde top naranja -->
+        <!-- Contenido absolutamente centrado sobre el círculo -->
         <div
-          class="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#e8601c] via-orange-400 to-[#e8601c]"
+          class="absolute inset-0 flex flex-col justify-between items-center px-[25%] py-[8%] md:px-[31%] md:py-[12%]"
         >
-        </div>
-
-        <!-- Oval de precio -->
-        <div class="inline-block mb-8">
           <div
-            class="border-2 border-[#e8601c]/60 px-12 py-6 text-center"
-            style="border-radius: 50%/40%; min-width: 280px;"
+            class="w-full flex flex-col"
+            style="gap: clamp(0.5rem, 2vw, 1.5rem);"
           >
-            <p
-              class="text-[#1e3a5f]/50 text-xs font-bold uppercase tracking-widest line-through mb-1"
+            <!-- Items -->
+            <div class="flex flex-col gap-3 md:gap-4">
+              <div class="flex items-start gap-1 md:gap-3">
+                <span
+                  class="w-7 h-7 md:w-8 md:h-8 rounded-full bg-white flex items-center justify-center flex-shrink-0"
+                >
+                  <span class="text-pink-500 font-black text-sm md:text-base"
+                    >✓</span
+                  >
+                </span>
+                <div class="flex flex-col md:gap-3">
+                  <p
+                    class="text-white font-black leading-none text-lg md:text-2xl"
+                  >
+                    100% ONLINE
+                  </p>
+                  <p class="text-white text-base md:text-lg">
+                    Acceso internacional
+                  </p>
+                </div>
+              </div>
+              <div class="flex gap-1 md:gap-3">
+                <span
+                  class="w-7 h-7 md:w-8 md:h-8 rounded-full bg-white flex items-center justify-center flex-shrink-0"
+                >
+                  <span class="text-pink-500 font-black text-sm md:text-base"
+                    >✓</span
+                  >
+                </span>
+                <div class="flex flex-col md:gap-3">
+                  <p
+                    class="text-white font-black leading-none text-lg md:text-2xl"
+                  >
+                    DURACIÓN:
+                  </p>
+                  <p class="text-white text-base md:text-lg">4 semanas</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-2 md:gap-3">
+                <span
+                  class="w-7 h-7 md:w-8 md:h-8 rounded-full bg-white flex items-center justify-center flex-shrink-0"
+                >
+                  <span class="text-pink-500 font-black text-sm md:text-base"
+                    >✓</span
+                  >
+                </span>
+                <div>
+                  <p
+                    class="text-white font-black leading-none text-lg md:text-2xl"
+                  >
+                    INICIO:
+                  </p>
+                  <p class="text-white text-sm md:text-lg">lunes 2 de marzo</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Caja de precio con imagen -->
+            <div class="relative text-center w-[160%] -ml-[30%] mt-4">
+              <img
+                src="/price_white.png"
+                alt=""
+                class="w-full object-contain"
+              />
+            </div>
+          </div>
+
+          <!-- Botón CTA -->
+          <div class="flex justify-center mt-4">
+            <a
+              href="#precio"
+              class="bg-white hover:bg-white/90 text-black font-black text-sm md:text-base uppercase tracking-wide px-6 py-2.5 md:px-8 md:py-3 rounded-full transition-all hover:scale-[1.03] shadow-xl whitespace-nowrap"
             >
-              PRECIO ANTES: $53 USD
-            </p>
-            <p
-              class="text-[#e8601c] leading-none"
-              style="font-family: 'Caveat', cursive; font-weight: 700; font-size: clamp(2.2rem, 8vw, 3.5rem);"
-            >
-              HOY $28 USD
-            </p>
+              ÚNETE AL RETO AHORA
+            </a>
           </div>
         </div>
-
-        <!-- Lista de beneficios -->
-        <div class="space-y-3 text-left max-w-xs mx-auto mb-10">
-          {
-            priceIncludes.map((item) => (
-              <div class="flex items-center gap-3">
-                <span class="flex-shrink-0 w-5 h-5 rounded-full bg-orange-100 border border-orange-300 flex items-center justify-center">
-                  <span class="text-[#e8601c] text-xs font-black">✓</span>
-                </span>
-                <span class="text-[#1e3a5f] text-sm sm:text-base">{item}</span>
-              </div>
-            ))
-          }
-        </div>
-
-        <!-- CTA -->
-        <a
-          href="#"
-          class="bg-[#e8601c] hover:bg-[#cf5218] text-white font-black text-base sm:text-lg uppercase tracking-wide px-10 py-4 rounded-full transition-all hover:scale-[1.03] shadow-lg shadow-orange-200 inline-block w-full"
-        >
-          ÚNETE AL RETO AHORA
-        </a>
-
-        <!-- Nota -->
-        <p class="text-[#1e3a5f]/40 text-xs mt-4">
-          Cupos limitados · Acceso inmediato al inscribirte
-        </p>
       </div>
     </div>
   </section>
-
-  <!-- ===== FOOTER ===== -->
-  <footer class="bg-black border-t border-white/10 py-8">
-    <div
-      class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4"
-    >
-      <div class="flex items-start gap-1">
-        <span class="text-white/70 text-xs leading-none mt-1">by</span>
-        <span class="text-white font-black text-xl leading-none"
-          >SōyNathaFit</span
-        >
-      </div>
-      <div class="flex items-center gap-4">
-        <button
-          id="open-terms"
-          class="text-gray-500 hover:text-white text-sm transition-colors underline underline-offset-2"
-        >
-          Términos y Condiciones
-        </button>
-        <span class="text-gray-700 text-xs">·</span>
-        <span class="text-gray-600 text-sm"
-          >© 2025 SoyNathaFit. Todos los derechos reservados.</span
-        >
-      </div>
-    </div>
-  </footer>
-
-  <!-- ===== MODAL TÉRMINOS ===== -->
-  <dialog
-    id="terms-modal"
-    class="fixed inset-0 z-50 w-full max-w-2xl mx-auto my-8 rounded-2xl bg-white shadow-2xl p-0 backdrop:bg-black/60"
-  >
-    <div
-      class="flex items-center justify-between px-8 py-5 border-b border-gray-100 sticky top-0 bg-white rounded-t-2xl z-10"
-    >
-      <h2 class="font-black text-[#1e3a5f] text-lg uppercase tracking-wide">
-        Términos y Condiciones
-      </h2>
-      <button
-        id="close-terms"
-        class="w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors text-gray-500 font-black text-lg leading-none"
-        aria-label="Cerrar"
-      >
-        ×
-      </button>
-    </div>
-    <div class="px-8 py-6 overflow-y-auto max-h-[70vh]">
-      <pre
-        class="whitespace-pre-wrap font-jakarta text-sm text-[#1e3a5f]/80 leading-relaxed">{terminos}</pre>
-    </div>
-    <div
-      class="px-8 py-5 border-t border-gray-100 sticky bottom-0 bg-white rounded-b-2xl"
-    >
-      <button
-        id="close-terms-btn"
-        class="bg-[#e8601c] hover:bg-[#cf5218] text-white font-black text-sm uppercase tracking-wide px-8 py-3 rounded-full transition-all w-full"
-      >
-        Entendido
-      </button>
-    </div>
-  </dialog>
-
-  <script>
-    const modal = document.getElementById("terms-modal") as HTMLDialogElement;
-    document
-      .getElementById("open-terms")
-      ?.addEventListener("click", () => modal.showModal());
-    document
-      .getElementById("close-terms")
-      ?.addEventListener("click", () => modal.close());
-    document
-      .getElementById("close-terms-btn")
-      ?.addEventListener("click", () => modal.close());
-    modal?.addEventListener("click", (e) => {
-      if (e.target === modal) modal.close();
-    });
-  </script>
 </Layout>
+
+<!-- ===== ¿PARA QUIÉN ES? ===== -->
+<section class="py-16 md:py-24">
+  <div class="max-w-4xl mx-auto px-6 text-center">
+    <!-- Título -->
+    <h2
+      class="text-3xl sm:text-4xl md:text-5xl font-black text-white uppercase mb-4"
+    >
+      ESTE RETO ES PARA TI SI...
+    </h2>
+    <p
+      class="text-white text-base sm:text-xl leading-relaxed max-w-xl mx-auto mb-14"
+    >
+      Este programa está diseñado para personas reales que buscan resultados
+      sostenibles, sin extremos ni presiones innecesarias.
+    </p>
+
+    <!-- Fila de 3 -->
+    <div class="grid grid-cols-3 gap-6 sm:gap-10 mb-10">
+      {
+        paraQuien.slice(0, 3).map((item, i) => (
+          <div class="flex flex-col items-center gap-4">
+            <img
+              src={i === 0 ? "/for_you.png" : `/for_you_${i + 1}.png`}
+              alt={item}
+              class="w-20 h-20 sm:w-24 sm:h-24 object-contain brightness-0 invert"
+            />
+            <p class="text-white text-base sm:text-xl leading-snug font-medium">
+              {item}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- Fila de 2 centrada -->
+    <div class="flex justify-center gap-6 sm:gap-10 mb-14">
+      {
+        paraQuien.slice(3).map((item, i) => (
+          <div class="flex flex-col items-center gap-4 max-w-[160px] sm:max-w-[200px]">
+            <img
+              src={`/for_you_${i + 4}.png`}
+              alt={item}
+              class="w-20 h-20 sm:w-24 sm:h-24 object-contain brightness-0 invert"
+            />
+            <p class="text-white text-sm sm:text-xl leading-snug font-medium">
+              {item}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- Banner inferior naranja -->
+    <div class="rounded-3xl px-8 py-6 sm:py-7">
+      <p class="text-white font-black text-base sm:text-2xl leading-snug">
+        No necesitas estar en tu mejor forma para empezar.
+      </p>
+      <p
+        class="text-white mt-1 bg-[#f206b3] rounded-2xl px-2 inline-block font-black text-xl md:text-3xl uppercase tracking-wide"
+      >
+        SOLO NECESITAS DECIDIRTE.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ¿QUÉ INCLUYE? ===== -->
+<section class="py-10 md:py-16">
+  <div class="max-w-5xl mx-auto px-5 md:px-8">
+    <div
+      class="flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-12 items-center p-8 md:p-12 bg-cover md:bg-contain bg-center bg-no-repeat rounded-3xl"
+      style="background-image: url('/tribu_bg.png');"
+    >
+      <!-- Título + lista -->
+      <div class="md:order-2">
+        <h2
+          class="text-white font-black text-2xl sm:text-3xl md:text-4xl uppercase leading-tight mt-6 md:mt-0 mb-6"
+        >
+          TODO LO QUE<br />NECESITAS, A UN<br />CLICK DE DISTANCIA
+        </h2>
+        <ul class="space-y-8 md:space-y-4">
+          {
+            includes.map((item) => (
+              <li class="flex items-start gap-3">
+                <span class="text-white font-black mt-0.5 flex-shrink-0">
+                  ✓
+                </span>
+                <div>
+                  <p class="text-white font-black text-xl uppercase tracking-wide">
+                    {item.title}
+                  </p>
+                  <p class="text-white/90 text-lg mt-0.5 leading-snug">
+                    {item.desc}
+                  </p>
+                </div>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <!-- Botón: al final en mobile (order-last), izquierda en desktop (order-1) -->
+      <div
+        class="flex items-center justify-center order-last md:order-1 mb-6 md:mt-0"
+      >
+        <a
+          href="#precio"
+          class="bg-white hover:bg-white/90 text-[#1e3a5f] font-black text-base sm:text-lg uppercase tracking-wide px-10 py-3 rounded-2xl transition-all hover:scale-[1.03] shadow-xl text-center leading-snug"
+        >
+          QUIERO SER PARTE<br />DE LA TRIBU
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ¿CÓMO FUNCIONA? ===== -->
+<section class="py-16 md:py-24">
+  <div class="max-w-5xl mx-auto px-6">
+    <h2
+      class="text-white font-black text-3xl sm:text-4xl md:text-5xl uppercase text-center mb-14 tracking-wide"
+    >
+      ¿CÓMO FUNCIONA EL RETO?
+    </h2>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
+      {
+        steps.map((text, i) => (
+          <div class="flex flex-col items-center text-center gap-4">
+            <p class="text-white/80 font-black text-xs uppercase tracking-widest">
+              PASO {i + 1}
+            </p>
+            <img
+              src={i === 0 ? "/how_works.png" : `/how_works_${i + 1}.png`}
+              alt={`Paso ${i + 1}`}
+              class="w-20 h-20 sm:w-24 sm:h-24 object-contain"
+            />
+            <p class="text-white font-black text-xs sm:text-sm uppercase leading-snug">
+              {text}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- Separador -->
+    <hr class="border-white my-14 max-w-sm mx-auto border-1" />
+
+    <!-- Título + descripción -->
+    <div class="text-center mb-10">
+      <h2
+        class="text-white font-black text-3xl sm:text-4xl md:text-5xl uppercase leading-tight mb-5"
+      >
+        ESTO NO ES<br />SOLO UN RETO FÍSICO
+      </h2>
+      <p
+        class="text-white/90 text-base sm:text-lg leading-relaxed max-w-xl mx-auto"
+      >
+        Este reto está pensado para ayudarte a crear estructura, disciplina y
+        conexión contigo mismo, más allá del resultado estético.
+      </p>
+    </div>
+
+    <!-- Cards de transformaciones: 2+2+1 centrado -->
+    <div class="flex flex-col gap-4 max-w-2xl mx-auto">
+      <div class="grid grid-cols-2 gap-4">
+        {
+          transformations.slice(0, 2).map((item) => (
+            <div
+              class="rounded-2xl px-5 py-4 flex items-start gap-3"
+              style="background: linear-gradient(135deg, #38b6ff 0%, #c084fc 100%)"
+            >
+              <span class="w-6 h-6 rounded-full bg-white flex items-center justify-center flex-shrink-0 mt-0.5">
+                <span class="text-purple-500 text-xs font-black">✓</span>
+              </span>
+              <p class="text-white font-black text-sm sm:text-lg uppercase leading-tight">
+                {item}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        {
+          transformations.slice(2, 4).map((item) => (
+            <div
+              class="rounded-2xl px-5 py-4 flex items-start gap-3"
+              style="background: linear-gradient(135deg, #38b6ff 0%, #c084fc 100%)"
+            >
+              <span class="w-6 h-6 rounded-full bg-white flex items-center justify-center flex-shrink-0 mt-0.5">
+                <span class="text-purple-500 text-xs font-black">✓</span>
+              </span>
+              <p class="text-white font-black text-sm sm:text-lg uppercase leading-snug">
+                {item}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+      <div class="flex justify-center">
+        <div
+          class="rounded-2xl px-5 py-4 flex items-start gap-3 w-1/2"
+          style="background: linear-gradient(135deg, #38b6ff 0%, #c084fc 100%)"
+        >
+          <span
+            class="w-6 h-6 rounded-full bg-white flex items-center justify-center flex-shrink-0 mt-0.5"
+          >
+            <span class="text-purple-500 text-xs font-black">✓</span>
+          </span>
+          <p
+            class="text-white font-black text-sm sm:text-lg uppercase leading-snug"
+          >
+            {transformations[4]}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PRECIO ===== -->
+<section
+  id="precio"
+  class="py-10 md:py-16"
+  style="background: linear-gradient(90deg, #4f6fe8 0%, #1a3a8f 75%, #2d1a8f 100%)"
+>
+  <div class="max-w-lg mx-auto px-5">
+    <!-- Card blanca -->
+    <div class="bg-white rounded-3xl p-8 sm:p-10 text-center shadow-2xl">
+      <!-- Título -->
+      <h2
+        class="font-black text-2xl sm:text-3xl md:text-4xl uppercase leading-tight mb-6"
+      >
+        <span
+          style="background: linear-gradient(135deg, #38b6ff 0%, #c084fc 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"
+          >INSCRÍBETE HOY</span
+        ><br />
+        <span class="text-[#1e3a5f]">AL RETO ONLINE MASIVO</span>
+      </h2>
+
+      <!-- Caja de precio con imagen -->
+      <div class="relative mb-3 border-2 border-[#956eef] rounded-2xl p-2">
+        <img
+          src="/price_transparent.png"
+          alt=""
+          class="w-full object-contain"
+        />
+        <div class="absolute inset-0 flex flex-col justify-center items-center">
+          <p
+            class="font-black text-sm uppercase tracking-widest line-through text-[#1e3a5f]/50 mb-1"
+          >
+            PRECIO ANTES: $53 USD
+          </p>
+          <p
+            class="leading-none text-[#1e3a5f]"
+            style="font-family: 'Caveat', cursive; font-weight: 700; font-size: clamp(2rem, 8vw, 3.5rem);"
+          >
+            HOY $28 USD
+          </p>
+        </div>
+      </div>
+
+      <!-- Subtexto precio -->
+      <p class="text-[#1e3a5f] font-semibold text-base mb-6">
+        Precio especial por tiempo limitado
+      </p>
+
+      <!-- Botón CTA -->
+      <a
+        href="#"
+        class="inline-block bg-[#956eef] font-black text-white text-base sm:text-lg uppercase tracking-wide px-10 py-4 rounded-2xl transition-all hover:scale-[1.03] shadow-lg mb-8 w-full"
+      >
+        QUIERO UNIRME<br />AL RETO
+      </a>
+
+      <!-- Métodos de pago -->
+      <div>
+        <h3 class="text-[#1e3a5f] font-black text-lg sm:text-xl uppercase mb-2">
+          MÉTODOS DE PAGO DISPONIBLES
+        </h3>
+        <p class="text-[#1e3a5f]/70 text-sm sm:text-base mb-5">
+          Aceptamos los siguientes métodos de pago para participantes de todo el
+          mundo:
+        </p>
+        <div class="flex items-center justify-center gap-6">
+          <img src="/zelle.png" alt="Zelle" class="h-6 md:h-8 object-contain" />
+          <img
+            src="/paypal.png"
+            alt="PayPal"
+            class="h-6 md:h-8 object-contain"
+          />
+          <img
+            src="/western_union.png"
+            alt="Western Union"
+            class="h-6 md:h-8 object-contain"
+          />
+        </div>
+      </div>
+      <img src="/next_start.png" alt="" class="w-full object-contain mt-6" />
+    </div>
+
+    <!-- Banner próxima fecha -->
+  </div>
+</section>
+
+<!-- ===== SOBRE SOYNATHAFIT ===== -->
+<section
+  class="py-16 md:py-24"
+  style="background: linear-gradient(90deg, #4f6fe8 0%, #1a3a8f 75%, #2d1a8f 100%)"
+>
+  <div class="max-w-2xl mx-auto px-6 text-center">
+    <!-- Separador -->
+    <hr class="border-white mb-14 max-w-xs mx-auto border-1" />
+
+    <!-- Título -->
+    <h2
+      class="text-white font-black text-3xl sm:text-4xl md:text-5xl uppercase leading-tight mb-8"
+    >
+      SOBRE<br />SŌYNATHAFIT
+    </h2>
+
+    <!-- Descripción -->
+    <p class="text-white text-base sm:text-lg leading-relaxed mb-6">
+      SoyNathaFit es un enfoque integral de bienestar que combina entrenamiento,
+      nutrición flexible y trabajo mental, ayudando a personas reales a
+      construir hábitos sostenibles sin extremos.
+    </p>
+    <p class="text-white text-base sm:text-lg leading-relaxed mb-12">
+      Este reto fue creado para acompañarte, guiarte y demostrarte que sí puedes
+      sostener un proceso cuando tienes la estructura correcta.
+    </p>
+
+    <!-- Banner rosa -->
+    <div class="inline-block bg-[#f206b3] rounded-xl px-8 py-1 mb-8">
+      <p
+        class="text-white font-black text-lg sm:text-xl uppercase tracking-wide"
+      >
+        ESTE PUEDE SER TU PUNTO DE PARTIDA
+      </p>
+    </div>
+
+    <!-- Subtexto -->
+    <p class="text-white text-base sm:text-lg leading-relaxed mb-10">
+      No esperes al momento perfecto.<br />
+      Empieza hoy y acompáñanos durante estas 4 semanas.
+    </p>
+
+    <!-- Botón CTA -->
+    <a
+      href="#precio"
+      class="inline-block bg-white hover:bg-white/90 text-[#1e3a5f] font-black text-base sm:text-lg uppercase tracking-wide px-10 py-4 rounded-2xl transition-all hover:scale-[1.03] shadow-xl"
+    >
+      ÚNETE AL RETO ONLINE<br />MASIVO AHORA
+    </a>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="bg-black border-t border-white/10 py-8">
+  <div
+    class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4"
+  >
+    <div class="flex items-start gap-1">
+      <img
+        src="/by_soy_nf.png"
+        alt="by SōyNathaFit"
+        class="w-1/4 object-contain"
+      />
+    </div>
+    <div class="flex items-center gap-4">
+      <button
+        id="open-terms"
+        class="text-gray-500 hover:text-white text-sm transition-colors underline underline-offset-2"
+      >
+        Términos y Condiciones
+      </button>
+      <span class="text-gray-700 text-xs">·</span>
+      <span class="text-gray-600 text-sm"
+        >© 2026 SoyNathaFit. Todos los derechos reservados.</span
+      >
+    </div>
+  </div>
+</footer>
+
+<!-- ===== MODAL TÉRMINOS ===== -->
+<dialog
+  id="terms-modal"
+  class="fixed inset-0 z-50 w-full max-w-2xl mx-auto my-8 rounded-2xl bg-white shadow-2xl p-0 backdrop:bg-black/60"
+>
+  <div
+    class="flex items-center justify-between px-8 py-5 border-b border-gray-100 sticky top-0 bg-white rounded-t-2xl z-10"
+  >
+    <h2 class="font-black text-[#1e3a5f] text-lg uppercase tracking-wide">
+      Términos y Condiciones
+    </h2>
+    <button
+      id="close-terms"
+      class="w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors text-gray-500 font-black text-lg leading-none"
+      aria-label="Cerrar"
+    >
+      ×
+    </button>
+  </div>
+  <div class="px-8 py-6 overflow-y-auto max-h-[70vh]">
+    <pre
+      class="whitespace-pre-wrap font-jakarta text-sm text-[#1e3a5f]/80 leading-relaxed">{terminos}</pre>
+  </div>
+  <div
+    class="px-8 py-5 border-t border-gray-100 sticky bottom-0 bg-white rounded-b-2xl"
+  >
+    <button
+      id="close-terms-btn"
+      class="bg-[#e8601c] hover:bg-[#cf5218] text-white font-black text-sm uppercase tracking-wide px-8 py-3 rounded-full transition-all w-full"
+    >
+      Entendido
+    </button>
+  </div>
+</dialog>
+
+<script>
+  const modal = document.getElementById("terms-modal") as HTMLDialogElement;
+  document
+    .getElementById("open-terms")
+    ?.addEventListener("click", () => modal.showModal());
+  document
+    .getElementById("close-terms")
+    ?.addEventListener("click", () => modal.close());
+  document
+    .getElementById("close-terms-btn")
+    ?.addEventListener("click", () => modal.close());
+  modal?.addEventListener("click", (e) => {
+    if (e.target === modal) modal.close();
+  });
+</script>
