@@ -1,0 +1,78 @@
+---
+import "@/styles/global.css";
+import "@/styles/components.css";
+import "@/styles/prototype-landing.css";
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
+import { SITE, SITE_URL, type Locale } from "@/config/site";
+import { IMAGES } from "@/config/images";
+
+type AlternateLink = {
+  lang: string;
+  href: string;
+};
+
+type Props = {
+  locale: Locale;
+  title: string;
+  description: string;
+  canonicalPath?: string;
+  alternates?: AlternateLink[];
+  jsonLd?: Array<Record<string, unknown>>;
+  noIndex?: boolean;
+};
+
+const {
+  locale,
+  title,
+  description,
+  canonicalPath = Astro.url.pathname,
+  alternates = [],
+  jsonLd = [],
+  noIndex = false,
+} = Astro.props;
+
+const canonical = new URL(canonicalPath, SITE_URL).toString();
+const ogImage = new URL(IMAGES.og, SITE_URL).toString();
+const currentPath = Astro.url.pathname;
+---
+
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {noIndex ? <meta name="robots" content="noindex,nofollow" /> : null}
+    <link rel="canonical" href={canonical} />
+    {alternates.map((alternate) => (
+      <link rel="alternate" hreflang={alternate.lang} href={new URL(alternate.href, SITE_URL).toString()} />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={new URL("/es", SITE_URL).toString()} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:locale" content={locale === "es" ? "es_US" : "en_US"} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="theme-color" content="#F15822" />
+    <link rel="icon" href="/logos/lyt-darkblue.png" />
+    {jsonLd.map((schema) => (
+      <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+    ))}
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">{locale === "es" ? "Saltar al contenido" : "Skip to content"}</a>
+    <Header locale={locale} currentPath={currentPath} />
+    <main id="main-content" tabindex="-1">
+      <slot />
+    </main>
+    <Footer locale={locale} />
+  </body>
+</html>

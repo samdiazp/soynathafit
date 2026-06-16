@@ -1,0 +1,99 @@
+@font-face {
+  font-family: "Komet";
+  src: url("/fonts/Komet-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Komet";
+  src: url("/fonts/Komet-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Komet";
+  src: url("/fonts/Komet-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Komet";
+  src: url("/fonts/Komet-Heavy.otf") format("opentype");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Komet";
+  src: url("/fonts/Komet-Black.otf") format("opentype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Stack Sans";
+  src: url("/fonts/StackSansText-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Stack Sans";
+  src: url("/fonts/StackSansText-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Flood Std";
+  src: url("/fonts/Flood-Std.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --lyt-orange: #f15822;
+  --lyt-orange-700: #c03f12;
+  --lyt-orange-50: #fdede6;
+  --lyt-cyan: #22dbf0;
+  --lyt-cyan-50: #e2fafd;
+  --lyt-blue-dark: #244159;
+  --lyt-blue-light: #c7e6f1;
+  --lyt-blue: #155af6;
+  --lyt-purple: #966ef0;
+  --lyt-purple-light: #b284f1;
+  --lyt-gray: #d8d8d8;
+  --lyt-gray-100: #f4f4f4;
+  --lyt-gray-300: #bebebe;
+  --lyt-gray-600: #6b6b6b;
+  --lyt-white: #ffffff;
+  --lyt-black: #111111;
+  --lyt-gradient: linear-gradient(100deg, #22dbf0 0%, #c7e6f1 18%, #b284f1 38%, #f15822 62%, #966ef0 84%, #155af6 100%);
+  --lyt-gradient-soft: linear-gradient(100deg, #22dbf0 0%, #b284f1 50%, #155af6 100%);
+  --fg-1: var(--lyt-blue-dark);
+  --fg-2: var(--lyt-gray-600);
+  --fg-inverse: var(--lyt-white);
+  --border-1: rgba(36, 65, 89, 0.12);
+  --border-2: rgba(36, 65, 89, 0.24);
+  --font-display: "Komet", "Stack Sans", system-ui, sans-serif;
+  --font-body: "Komet", "Stack Sans", system-ui, sans-serif;
+  --font-ui: "Stack Sans", "Komet", system-ui, sans-serif;
+  --font-brush: "Flood Std", "Komet", cursive;
+  --shadow-sm: 0 1px 2px rgba(36, 65, 89, 0.08);
+  --shadow-md: 0 6px 18px rgba(36, 65, 89, 0.1);
+  --shadow-lg: 0 18px 48px rgba(36, 65, 89, 0.18);
+  --shadow-brand: 0 14px 36px rgba(241, 88, 34, 0.3);
+  --shadow-focus: 0 0 0 3px rgba(150, 110, 240, 0.35);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}

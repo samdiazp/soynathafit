@@ -1,648 +1,529 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import { terminos } from "../legal";
-import { VIDEO_ID } from "astro:env/client";
+import "@/styles/snf.css";
+
+const WA = "https://wa.me/14079859084?text=Hola%20Natha%2C%20quiero%20info%20de%20tus%20planes%20de%20entrenamiento";
+const CAL = "https://calendly.com/ceo-lytmanagement/30min";
+const IG = "https://instagram.com/soynathafit";
+const TT = "https://tiktok.com/@soynathafit";
+const FB = "https://www.facebook.com/profile.php?id=61590926841340";
+const YT_ID = "PRT3sN5klk0";
+const YT = `https://youtu.be/${YT_ID}`;
+
+// Iconos de línea (aesthetic, no emojis)
+const svg = (p: string) =>
+  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${p}</svg>`;
+const ic = {
+  star: svg(`<path d="M12 3l2.4 5.6L20.4 9l-4.2 4 1.1 6L12 16.1 6.7 19l1.1-6-4.2-4 6-.4L12 3Z"/>`),
+  medal: svg(`<circle cx="12" cy="9" r="6"/><path d="M9.2 14.3 7.5 22l4.5-2.7L16.5 22l-1.7-7.7"/>`),
+  target: svg(`<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.4"/>`),
+  bolt: svg(`<path d="M13 2 4.5 13H11l-1 9 8.5-11H12l1-9Z"/>`),
+  heart: svg(`<path d="M20.4 5.1a5 5 0 0 0-7.1 0l-1.3 1.3-1.3-1.3a5 5 0 1 0-7.1 7.1L12 21l9.4-8.8a5 5 0 0 0-1-7.1Z"/><path d="M3.5 12.5h3l1.5-3 2 5 1.5-2h3"/>`),
+  trophy: svg(`<path d="M8 21h8M12 17v4M7 4h10v4a5 5 0 0 1-10 0V4Z"/><path d="M7 5H4v2a3 3 0 0 0 3 3M17 5h3v2a3 3 0 0 1-3 3"/>`),
+  flame: svg(`<path d="M12 3c0 3-3 4-3 7a3 3 0 0 0 6 0c0-1-1-2-1-3 1 .6 3 2.6 3 5a5 5 0 0 1-10 0c0-4 3-6 5-9Z"/>`),
+  dumbbell: svg(`<path d="m6.5 6.5 11 11"/><path d="m21 21-1-1"/><path d="m3 3 1 1"/><path d="m18 22 4-4"/><path d="m2 6 4-4"/><path d="m3 10 7-7"/><path d="m14 21 7-7"/>`),
+  leaf: svg(`<path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.5 19 2c1 2 2 4.2 2 8 0 5.5-4.8 10-10 10Z"/><path d="M2 21c0-3 1.9-5.4 5.1-6"/>`),
+  chat: svg(`<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z"/>`),
+  phone: svg(`<path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/>`),
+  play: svg(`<path d="M5 4.5v15a1 1 0 0 0 1.5.9l13-7.5a1 1 0 0 0 0-1.8l-13-7.5A1 1 0 0 0 5 4.5Z" fill="currentColor" stroke="none"/>`),
+  arrow: svg(`<path d="M7 17 17 7M9 7h8v8"/>`),
+  calendar: svg(`<rect x="3" y="4.5" width="18" height="16" rx="2.5"/><path d="M3 9h18M8 2.5v4M16 2.5v4"/>`),
+};
+
+// WhatsApp (marca) para el botón flotante
+const waBrand = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.79 14.06c-.25.69-1.45 1.32-1.99 1.4-.51.08-1.15.11-1.86-.12-.43-.14-.98-.32-1.69-.62-2.97-1.28-4.9-4.27-5.05-4.47-.15-.2-1.2-1.6-1.2-3.05 0-1.45.76-2.16.03-2.94.2-.22.45-.27.6-.27.15 0 .3 0 .43.01.14.01.32-.05.5.38.18.44.62 1.51.67 1.62.05.11.08.24.02.38-.07.14-.1.23-.21.36-.11.13-.23.29-.32.38-.11.11-.22.23-.1.45.12.22.55.91 1.18 1.47.81.73 1.5.95 1.71 1.06.21.11.34.09.46-.05.13-.14.54-.62.68-.84.14-.22.28-.18.48-.11.2.07 1.25.59 1.46.7.21.11.36.16.41.25.05.09.05.52-.13 1.02Z"/></svg>`;
+
+// Iconos de marca (redes) — fill, no stroke
+const brandSvg = (p: string) =>
+  `<svg viewBox="0 0 24 24" fill="currentColor">${p}</svg>`;
+const social = [
+  {
+    name: "Instagram",
+    handle: "@soynathafit",
+    href: IG,
+    cls: "ig",
+    ic: brandSvg(`<path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.2.06 1.8.26 2.2.43.6.2 1 .47 1.4.9.43.4.7.8.9 1.4.17.4.37 1 .43 2.2.07 1.3.07 1.7.07 4.9s0 3.6-.07 4.9c-.06 1.2-.26 1.8-.43 2.2-.2.6-.47 1-.9 1.4-.4.43-.8.7-1.4.9-.4.17-1 .37-2.2.43-1.3.07-1.7.07-4.9.07s-3.6 0-4.9-.07c-1.2-.06-1.8-.26-2.2-.43-.6-.2-1-.47-1.4-.9-.43-.4-.7-.8-.9-1.4-.17-.4-.37-1-.43-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.07-4.9c.06-1.2.26-1.8.43-2.2.2-.6.47-1 .9-1.4.4-.43.8-.7 1.4-.9.4-.17 1-.37 2.2-.43C8.4 2.2 8.8 2.2 12 2.2Zm0 1.8c-3.1 0-3.5 0-4.7.07-1.1.05-1.7.24-2.1.4-.5.2-.9.43-1.3.82-.4.4-.63.8-.82 1.3-.16.4-.35 1-.4 2.1C2.6 9.9 2.6 10.3 2.6 12s0 2.1.07 3.3c.05 1.1.24 1.7.4 2.1.2.5.43.9.82 1.3.4.4.8.63 1.3.82.4.16 1 .35 2.1.4 1.2.07 1.6.07 4.7.07s3.5 0 4.7-.07c1.1-.05 1.7-.24 2.1-.4.5-.2.9-.43 1.3-.82.4-.4.63-.8.82-1.3.16-.4.35-1 .4-2.1.07-1.2.07-1.6.07-3.3s0-2.1-.07-3.3c-.05-1.1-.24-1.7-.4-2.1-.2-.5-.43-.9-.82-1.3-.4-.4-.8-.63-1.3-.82-.4-.16-1-.35-2.1-.4C15.5 4 15.1 4 12 4Zm0 3.06A4.94 4.94 0 1 1 12 17a4.94 4.94 0 0 1 0-9.94Zm0 1.8a3.14 3.14 0 1 0 0 6.28 3.14 3.14 0 0 0 0-6.28Zm5.15-3.3a1.15 1.15 0 1 1 0 2.3 1.15 1.15 0 0 1 0-2.3Z"/>`),
+  },
+  {
+    name: "TikTok",
+    handle: "@soynathafit",
+    href: TT,
+    cls: "tt",
+    ic: brandSvg(`<path d="M16.6 5.8a4.3 4.3 0 0 1-1-2.8h-3v12.3a2.5 2.5 0 1 1-2.5-2.5c.26 0 .5.04.74.1V9.8a5.6 5.6 0 0 0-.74-.05 5.5 5.5 0 1 0 5.5 5.5V9.0a7.2 7.2 0 0 0 4.2 1.35V7.3a4.3 4.3 0 0 1-3.2-1.5Z"/>`),
+  },
+  {
+    name: "Facebook",
+    handle: "Soynathafit",
+    href: FB,
+    cls: "fb",
+    ic: brandSvg(`<path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12Z"/>`),
+  },
+];
+
+const offers = [
+  {
+    n: "01",
+    title: "Tu plan, no uno cualquiera",
+    body: "¿Bajar grasa o ganar músculo? ¿Gym o en casa con lo que tengas? Te diseño el entrenamiento exacto para tu cuerpo, tu nivel y tu rutina real. Nada copiado de internet.",
+    tags: ["Gym o casa", "Pérdida de grasa", "Masa muscular"],
+    feature: true,
+  },
+  {
+    n: "02",
+    title: "Comer rico sin pasar hambre",
+    body: "Tu plan de alimentación cambia cada 15 días para que tu cuerpo no se acostumbre y los resultados no se frenen nunca. Comida real, no castigo.",
+  },
+  {
+    n: "03",
+    title: "Yo, encima tuyo cada día",
+    body: "Te escribo a diario, reviso cómo vas y te empujo justo cuando estás por aflojar. Aquí no desapareces del mapa: entrenas conmigo, no sola.",
+  },
+];
 
 const includes = [
-  {
-    number: "01",
-    title: "Entrenamiento diario dirigido a tus metas",
-    desc: "Rutinas estructuradas para ayudarte a avanzar de forma progresiva durante las 4 semanas.",
-    color: "#a115ff",
-  },
-  {
-    number: "02",
-    title: "Nutrición flexible (sin dietas extremas)",
-    desc: "Aprende a alimentarte mejor sin restricciones extremas ni culpas innecesarias.",
-    color: "#7ef474",
-  },
-  {
-    number: "03",
-    title: "Apoyo mental + emocional",
-    desc: "Herramientas para trabajar el enfoque, la calma y la disciplina durante el proceso.",
-    color: "#a115ff",
-  },
-  {
-    number: "04",
-    title: "Tribu LYT – Comunidad para ti",
-    desc: "Acceso a una comunidad que te acompaña, motiva y sostiene durante todo el reto.",
-    color: "#7ef474",
-  },
+  { ic: ic.dumbbell, t: "Rutinas a tu medida", s: "Para gym o casa, con tu nivel y tu equipo. Sin relleno." },
+  { ic: ic.leaf, t: "Alimentación viva", s: "Renovada cada 15 días. Comida real, cero dietas de hambre." },
+  { ic: ic.chat, t: "Chequeo diario", s: "Te escribo cada día para que no aflojes ni un día." },
+  { ic: ic.phone, t: "Llamada semanal", s: "Vemos resultados, celebramos y ajustamos lo que toque." },
 ];
 
-const steps = [
-  "Te inscribes y aseguras tu cupo",
-  "Recibes acceso al contenido y a la comunidad",
-  "Sigues el plan durante 4 semanas (entrenamiento, nutrición y mindset)",
-  "Empiezas a notar cambios reales en tu cuerpo, energía y hábitos",
+const creds = [
+  { ic: ic.star, t: "Fundadora de LYT", s: "Mi método de bienestar y transformación", feature: true, href: "https://www.thelytmethod.com" },
+  { ic: ic.medal, t: "Entrenadora Personal certificada", s: "FEDA España · Sala Polivalente" },
+  { ic: ic.target, t: "Coaching Deportivo Internacional", s: "Avalado por ACI" },
+  { ic: ic.bolt, t: "Entrenamiento Funcional Internacional", s: "Federación de Aeróbica" },
+  { ic: ic.heart, t: "Salud y actividad física", s: "Inst. Panamericano + Universidad del Zulia" },
+  { ic: ic.trophy, t: "Premio Gatorade 2013", s: "Talento regional · Step y ritmos latinos" },
+  { ic: ic.flame, t: "Creadora de retos de transformación", s: "Reto 12 semanas · Micro Reto 6 semanas" },
 ];
 
-const transformations = [
-  "Más energía en tu día a día",
-  "Mayor enfoque y claridad mental",
-  "Constancia y hábitos sostenibles",
-  "Menos culpa, más equilibrio",
-  "Una mejor relación con tu cuerpo",
+const beforeAfter = [
+  { title: "Constancia que se nota", who: "Clienta SoyNathaFit", img: "/images/snf/resultado-2.jpg" },
+  { title: "El cambio empezó por decidir", who: "Clienta SoyNathaFit", img: "/images/snf/resultado-1.jpg" },
+  { title: "Fuerte por dentro y por fuera", who: "Clienta SoyNathaFit", img: "/images/snf/resultado-3.jpg" },
 ];
-
-const paraQuien = [
-  "Quieres retomar el ejercicio con estructura y guía",
-  "Buscas constancia sin rutinas imposibles",
-  "Te cuesta mantener la motivación por tu cuenta",
-  "Quieres mejorar tu relación con el ejercicio y la comida",
-  "No importa tu nivel, edad o país donde te encuentres",
-];
-
-const priceIncludes = [
-  "Entrenamiento diario estructurado",
-  "Nutrición flexible sin restricciones",
-  "Apoyo mental y emocional",
-  "Acceso a la Tribu LYT",
-  "4 semanas de acompañamiento completo",
-];
-
-const paymentMethods = ["Zelle", "PayPal", "Western Union"];
 ---
 
-<Layout>
-  <!-- ===== HERO ===== -->
-  <section class="relative overflow-hidden pt-24 pb-12 md:pt-28 md:pb-16">
-    <div class="max-w-4xl mx-auto px-5 md:px-8">
-      <!-- Título en pill -->
-      <div
-        class="rounded-3xl px-6 py-5 mb-10 text-center"
-        style="background: linear-gradient(135deg, #38b6ff 0%, #c084fc 100%)"
-      >
-        <h1
-          class="font-black text-white uppercase leading-tight text-3xl sm:text-4xl md:text-5xl lg:text-6xl"
-        >
-          TRANSFORMA TU CUERPO<br class="hidden sm:block" /> Y MENTE EN 4 SEMANAS
-        </h1>
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SoyNathaFit</title>
+    <meta
+      name="description"
+      content="Planes de entrenamiento personalizados para gym o casa, alimentación que cambia cada 15 días, chequeo diario y seguimiento semanal con Nathaly Díaz."
+    />
+    <meta name="theme-color" content="#7C3CF0" />
+    <link rel="icon" href="/logos/favicon.png" />
+    <meta property="og:title" content="SŌYNATHAFIT · Entrenamiento personal" />
+    <meta
+      property="og:description"
+      content="Tu transformación con acompañamiento real. Eyes on the prize."
+    />
+    <meta property="og:type" content="website" />
+  </head>
+  <body class="snf">
+    <!-- HEADER -->
+    <header class="snf-header">
+      <div class="wrap">
+        <a class="snf-header__logo" href="#top" aria-label="SoyNathaFit inicio">
+          <img src="/logos/snf-violet.png" alt="SoyNathaFit" />
+        </a>
+        <nav class="snf-nav">
+          <a href="#sobre-mi">Sobre mí</a>
+          <a href="#ofrezco">Lo que ofrezco</a>
+          <a href="#incluye">Cómo funciona</a>
+          <a href="#resultados">Resultados</a>
+          <a href="#comunidad">Comunidad</a>
+          <a href="/planes">Planes</a>
+        </nav>
+        <a class="btn btn-primary" href="/planes">Ver planes</a>
+        <button class="snf-burger" aria-label="Menú">
+          <span></span><span></span><span></span>
+        </button>
       </div>
+    </header>
 
-      <!-- Dos columnas: texto + video -->
-      <div class="grid md:grid-cols-2 gap-4 items-end mb-6">
-        <!-- Izquierda: identidad — misma altura que el video -->
-        <div class="aspect-video flex flex-col items-end gap-3">
-          <img
-            src="/hero.png"
-            alt="SōyNathaFit"
-            class="w-full object-contain h-full"
-          />
-        </div>
-
-        <!-- Derecha: video YouTube -->
-        <div
-          class="rounded-2xl border-2 border-white p-2 shadow-2xl shadow-black/40"
-        >
-          <div class="rounded-xl overflow-hidden aspect-video">
-            <iframe
-              src={`https://www.youtube.com/embed/${VIDEO_ID}?rel=0&modestbranding=1`}
-              title="SoyNathaFit – Reto Online Masivo"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen
-              class="w-full h-full"></iframe>
+    <!-- HERO -->
+    <section class="snf-hero" id="top">
+      <div class="snf-hero__bg" style="background-image:url('/images/snf/hero.jpg')"></div>
+      <div class="wrap">
+        <div class="snf-hero__inner">
+          <p class="snf-hero__kicker">Eyes on the prize</p>
+          <h1>
+            Tu meta no se<br />negocia
+            <span class="brush">dáale</span>
+          </h1>
+          <p class="snf-hero__lead">
+            Nada de rutinas copiadas ni dietas de hambre. Yo te armo el plan, te
+            reviso cada día y no te suelto hasta que lo logres. Tú pones la
+            decisión, yo pongo el método.
+          </p>
+          <div class="snf-hero__cta">
+            <a class="btn btn-primary btn-lg" href={CAL} target="_blank" rel="noopener">
+              <span class="btn__ic" set:html={ic.calendar} />
+              Agenda una llamada conmigo
+            </a>
+          </div>
+          <div class="snf-hero__stats">
+            <div class="snf-stat">
+              <div class="snf-stat__num">+15</div>
+              <div class="snf-stat__label">años entrenando mujeres</div>
+            </div>
+            <div class="snf-stat">
+              <div class="snf-stat__num">100%</div>
+              <div class="snf-stat__label">planes personalizados</div>
+            </div>
+            <div class="snf-stat">
+              <div class="snf-stat__num">7/7</div>
+              <div class="snf-stat__label">acompañamiento diario</div>
+            </div>
           </div>
         </div>
       </div>
+    </section>
 
-      <!-- Descripción centrada debajo del grid -->
-      <p
-        class="text-white font-medium text-xl md:text-2xl leading-snug text-center mx-auto max-w-5xl my-6 md:mt-12"
-      >
-        Entrenamiento, nutrición flexible y apoyo mental en un solo programa
-        100% online, diseñado para acompañarte desde cualquier parte del mundo.
-      </p>
-
-      <!-- Círculo INFO + PRECIO (mismo ancho que el resto del hero) -->
+    <!-- MARQUEE -->
+    <div class="snf-marquee" aria-hidden="true">
+      <div class="snf-marquee__track">
+        <span>no te pares</span><span>sigue sigue sigue</span><span>llega a la meta</span>
+        <span>eyes on the prize</span><span>dáale</span>
+        <span>no te pares</span><span>sigue sigue sigue</span><span>llega a la meta</span>
+        <span>eyes on the prize</span><span>dáale</span>
+      </div>
     </div>
-    <div class="max-w-5xl mx-auto md:mt-16">
-      <!-- El círculo: grande en mobile, más pequeño en desktop -->
-      <div class="w-full md:w-[60%] mx-auto relative">
-        <img src="/hero_price.png" alt="" class="w-full object-contain" />
 
-        <!-- Contenido absolutamente centrado sobre el círculo -->
-        <div
-          class="absolute inset-0 flex flex-col justify-between items-center px-[25%] py-[8%] md:px-[31%] md:py-[12%]"
-        >
-          <div
-            class="w-full flex flex-col"
-            style="gap: clamp(0.5rem, 2vw, 1.5rem);"
-          >
-            <!-- Items -->
-            <div class="flex flex-col gap-3 md:gap-4">
-              <div class="flex items-start gap-1 md:gap-3">
-                <span
-                  class="w-7 h-7 md:w-8 md:h-8 rounded-full bg-white flex items-center justify-center flex-shrink-0"
+    <!-- SOBRE MÍ / CREDENCIALES -->
+    <section class="snf-section" id="sobre-mi">
+      <div class="wrap snf-about">
+        <div class="snf-about__photo reveal-up">
+          <img src="/images/snf/nathaly.jpg" alt="Nathaly Díaz, entrenadora personal" />
+          <div class="snf-about__badge">Nathaly Díaz · Entrenadora personal</div>
+        </div>
+        <div class="reveal-up">
+          <p class="eyebrow">La entrenadora</p>
+          <h2>
+            Más de 15 años
+            <span class="brush violet">transformando vidas</span>
+          </h2>
+          <p class="lead">
+            Soy Nathaly. Empecé porque me cansé de ver a mujeres rendirse con
+            planes genéricos que nunca fueron pensados para ellas. Llevo más de
+            15 años entrenando de verdad: con formación, con método y con
+            cariño. También soy fundadora de LYT, mi método de bienestar. Aquí
+            no entrenas sola — entrenas conmigo.
+          </p>
+          <div class="snf-creds">
+            {creds.map((c) => {
+              const Tag = c.href ? "a" : "div";
+              return (
+                <Tag
+                  class={`snf-cred${c.feature ? " feature" : ""}${c.href ? " is-link" : ""}`}
+                  {...(c.href ? { href: c.href, target: "_blank", rel: "noopener" } : {})}
                 >
-                  <span class="text-pink-500 font-black text-sm md:text-base"
-                    >✓</span
-                  >
-                </span>
-                <div class="flex flex-col md:gap-3">
-                  <p
-                    class="text-white font-black leading-none text-lg md:text-2xl"
-                  >
-                    100% ONLINE
-                  </p>
-                  <p class="text-white text-base md:text-lg">
-                    Acceso internacional
-                  </p>
-                </div>
-              </div>
-              <div class="flex gap-1 md:gap-3">
-                <span
-                  class="w-7 h-7 md:w-8 md:h-8 rounded-full bg-white flex items-center justify-center flex-shrink-0"
-                >
-                  <span class="text-pink-500 font-black text-sm md:text-base"
-                    >✓</span
-                  >
-                </span>
-                <div class="flex flex-col md:gap-3">
-                  <p
-                    class="text-white font-black leading-none text-lg md:text-2xl"
-                  >
-                    DURACIÓN:
-                  </p>
-                  <p class="text-white text-base md:text-lg">4 semanas</p>
-                </div>
-              </div>
-              <div class="flex items-center gap-2 md:gap-3">
-                <span
-                  class="w-7 h-7 md:w-8 md:h-8 rounded-full bg-white flex items-center justify-center flex-shrink-0"
-                >
-                  <span class="text-pink-500 font-black text-sm md:text-base"
-                    >✓</span
-                  >
-                </span>
-                <div>
-                  <p
-                    class="text-white font-black leading-none text-lg md:text-2xl"
-                  >
-                    INICIO:
-                  </p>
-                  <p class="text-white text-sm md:text-lg">lunes 2 de marzo</p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Caja de precio con imagen -->
-            <div class="relative text-center w-[160%] -ml-[30%] mt-4">
-              <img
-                src="/price_white.png"
-                alt=""
-                class="w-full object-contain"
-              />
-            </div>
+                  <div class="snf-cred__ic" set:html={c.ic} />
+                  <div>
+                    <div class="snf-cred__t">{c.t}</div>
+                    <div class="snf-cred__s">{c.s}</div>
+                  </div>
+                  {c.href && <span class="snf-cred__go" set:html={ic.arrow} />}
+                </Tag>
+              );
+            })}
           </div>
-
-          <!-- Botón CTA -->
-          <div class="flex justify-center mt-4">
-            <a
-              href="#precio"
-              class="bg-white hover:bg-white/90 text-black font-black text-sm md:text-base uppercase tracking-wide px-6 py-2.5 md:px-8 md:py-3 rounded-full transition-all hover:scale-[1.03] shadow-xl whitespace-nowrap"
-            >
-              ÚNETE AL RETO AHORA
+          <div class="snf-cta-row reveal-up">
+            <a class="btn btn-cta btn-lg" href="/planes">
+              Hoy me elijo primero
+              <span class="btn__go" set:html={ic.arrow} />
             </a>
           </div>
         </div>
       </div>
-    </div>
-  </section>
-</Layout>
+    </section>
 
-<!-- ===== ¿PARA QUIÉN ES? ===== -->
-<section class="py-16 md:py-24">
-  <div class="max-w-4xl mx-auto px-6 text-center">
-    <!-- Título -->
-    <h2
-      class="text-3xl sm:text-4xl md:text-5xl font-black text-white uppercase mb-4"
-    >
-      ESTE RETO ES PARA TI SI...
-    </h2>
-    <p
-      class="text-white text-base sm:text-xl leading-relaxed max-w-xl mx-auto mb-14"
-    >
-      Este programa está diseñado para personas reales que buscan resultados
-      sostenibles, sin extremos ni presiones innecesarias.
-    </p>
-
-    <!-- Fila de 3 -->
-    <div class="grid grid-cols-3 gap-6 sm:gap-10 mb-10">
-      {
-        paraQuien.slice(0, 3).map((item, i) => (
-          <div class="flex flex-col items-center gap-4">
-            <img
-              src={i === 0 ? "/for_you.png" : `/for_you_${i + 1}.png`}
-              alt={item}
-              class="w-20 h-20 sm:w-24 sm:h-24 object-contain brightness-0 invert"
-            />
-            <p class="text-white text-base sm:text-xl leading-snug font-medium">
-              {item}
-            </p>
-          </div>
-        ))
-      }
-    </div>
-
-    <!-- Fila de 2 centrada -->
-    <div class="flex justify-center gap-6 sm:gap-10 mb-14">
-      {
-        paraQuien.slice(3).map((item, i) => (
-          <div class="flex flex-col items-center gap-4 max-w-[160px] sm:max-w-[200px]">
-            <img
-              src={`/for_you_${i + 4}.png`}
-              alt={item}
-              class="w-20 h-20 sm:w-24 sm:h-24 object-contain brightness-0 invert"
-            />
-            <p class="text-white text-sm sm:text-xl leading-snug font-medium">
-              {item}
-            </p>
-          </div>
-        ))
-      }
-    </div>
-
-    <!-- Banner inferior naranja -->
-    <div class="rounded-3xl px-8 py-6 sm:py-7">
-      <p class="text-white font-black text-base sm:text-2xl leading-snug">
-        No necesitas estar en tu mejor forma para empezar.
-      </p>
-      <p
-        class="text-white mt-1 bg-[#f206b3] rounded-2xl px-2 inline-block font-black text-xl md:text-3xl uppercase tracking-wide"
-      >
-        SOLO NECESITAS DECIDIRTE.
-      </p>
-    </div>
-  </div>
-</section>
-
-<!-- ===== ¿QUÉ INCLUYE? ===== -->
-<section class="py-10 md:py-16">
-  <div class="max-w-5xl mx-auto px-5 md:px-8">
-    <div
-      class="flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-12 items-center p-8 md:p-12 bg-cover md:bg-contain bg-center bg-no-repeat rounded-3xl"
-      style="background-image: url('/tribu_bg.png');"
-    >
-      <!-- Título + lista -->
-      <div class="md:order-2">
-        <h2
-          class="text-white font-black text-2xl sm:text-3xl md:text-4xl uppercase leading-tight mt-6 md:mt-0 mb-6"
-        >
-          TODO LO QUE<br />NECESITAS, A UN<br />CLICK DE DISTANCIA
+    <!-- MISIÓN -->
+    <section class="snf-section dark">
+      <div class="wrap snf-section__head center reveal-up">
+        <p class="eyebrow on-dark">Mi misión</p>
+        <h2>
+          Que entrenar y comer dejen de
+          <span class="brush on-dark">ser una batalla</span>
         </h2>
-        <ul class="space-y-8 md:space-y-4">
-          {
-            includes.map((item) => (
-              <li class="flex items-start gap-3">
-                <span class="text-white font-black mt-0.5 flex-shrink-0">
-                  ✓
-                </span>
-                <div>
-                  <p class="text-white font-black text-xl uppercase tracking-wide">
-                    {item.title}
-                  </p>
-                  <p class="text-white/90 text-lg mt-0.5 leading-snug">
-                    {item.desc}
-                  </p>
-                </div>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
-
-      <!-- Botón: al final en mobile (order-last), izquierda en desktop (order-1) -->
-      <div
-        class="flex items-center justify-center order-last md:order-1 mb-6 md:mt-0"
-      >
-        <a
-          href="#precio"
-          class="bg-white hover:bg-white/90 text-[#1e3a5f] font-black text-base sm:text-lg uppercase tracking-wide px-10 py-3 rounded-2xl transition-all hover:scale-[1.03] shadow-xl text-center leading-snug"
-        >
-          QUIERO SER PARTE<br />DE LA TRIBU
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== ¿CÓMO FUNCIONA? ===== -->
-<section class="py-16 md:py-24">
-  <div class="max-w-5xl mx-auto px-6">
-    <h2
-      class="text-white font-black text-3xl sm:text-4xl md:text-5xl uppercase text-center mb-14 tracking-wide"
-    >
-      ¿CÓMO FUNCIONA EL RETO?
-    </h2>
-
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
-      {
-        steps.map((text, i) => (
-          <div class="flex flex-col items-center text-center gap-4">
-            <p class="text-white/80 font-black text-xs uppercase tracking-widest">
-              PASO {i + 1}
-            </p>
-            <img
-              src={i === 0 ? "/how_works.png" : `/how_works_${i + 1}.png`}
-              alt={`Paso ${i + 1}`}
-              class="w-20 h-20 sm:w-24 sm:h-24 object-contain"
-            />
-            <p class="text-white font-black text-xs sm:text-sm uppercase leading-snug">
-              {text}
-            </p>
-          </div>
-        ))
-      }
-    </div>
-
-    <!-- Separador -->
-    <hr class="border-white my-14 max-w-sm mx-auto border-1" />
-
-    <!-- Título + descripción -->
-    <div class="text-center mb-10">
-      <h2
-        class="text-white font-black text-3xl sm:text-4xl md:text-5xl uppercase leading-tight mb-5"
-      >
-        ESTO NO ES<br />SOLO UN RETO FÍSICO
-      </h2>
-      <p
-        class="text-white/90 text-base sm:text-lg leading-relaxed max-w-xl mx-auto"
-      >
-        Este reto está pensado para ayudarte a crear estructura, disciplina y
-        conexión contigo mismo, más allá del resultado estético.
-      </p>
-    </div>
-
-    <!-- Cards de transformaciones: 2+2+1 centrado -->
-    <div class="flex flex-col gap-4 max-w-2xl mx-auto">
-      <div class="grid grid-cols-2 gap-4">
-        {
-          transformations.slice(0, 2).map((item) => (
-            <div
-              class="rounded-2xl px-5 py-4 flex items-start gap-3"
-              style="background: linear-gradient(135deg, #38b6ff 0%, #c084fc 100%)"
-            >
-              <span class="w-6 h-6 rounded-full bg-white flex items-center justify-center flex-shrink-0 mt-0.5">
-                <span class="text-purple-500 text-xs font-black">✓</span>
-              </span>
-              <p class="text-white font-black text-sm sm:text-lg uppercase leading-tight">
-                {item}
-              </p>
-            </div>
-          ))
-        }
-      </div>
-      <div class="grid grid-cols-2 gap-4">
-        {
-          transformations.slice(2, 4).map((item) => (
-            <div
-              class="rounded-2xl px-5 py-4 flex items-start gap-3"
-              style="background: linear-gradient(135deg, #38b6ff 0%, #c084fc 100%)"
-            >
-              <span class="w-6 h-6 rounded-full bg-white flex items-center justify-center flex-shrink-0 mt-0.5">
-                <span class="text-purple-500 text-xs font-black">✓</span>
-              </span>
-              <p class="text-white font-black text-sm sm:text-lg uppercase leading-snug">
-                {item}
-              </p>
-            </div>
-          ))
-        }
-      </div>
-      <div class="flex justify-center">
-        <div
-          class="rounded-2xl px-5 py-4 flex items-start gap-3 w-1/2"
-          style="background: linear-gradient(135deg, #38b6ff 0%, #c084fc 100%)"
-        >
-          <span
-            class="w-6 h-6 rounded-full bg-white flex items-center justify-center flex-shrink-0 mt-0.5"
-          >
-            <span class="text-purple-500 text-xs font-black">✓</span>
-          </span>
-          <p
-            class="text-white font-black text-sm sm:text-lg uppercase leading-snug"
-          >
-            {transformations[4]}
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== PRECIO ===== -->
-<section
-  id="precio"
-  class="py-10 md:py-16"
-  style="background: linear-gradient(90deg, #4f6fe8 0%, #1a3a8f 75%, #2d1a8f 100%)"
->
-  <div class="max-w-lg mx-auto px-5">
-    <!-- Card blanca -->
-    <div class="bg-white rounded-3xl p-8 sm:p-10 text-center shadow-2xl">
-      <!-- Título -->
-      <h2
-        class="font-black text-2xl sm:text-3xl md:text-4xl uppercase leading-tight mb-6"
-      >
-        <span
-          style="background: linear-gradient(135deg, #38b6ff 0%, #c084fc 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"
-          >INSCRÍBETE HOY</span
-        ><br />
-        <span class="text-[#1e3a5f]">AL RETO ONLINE MASIVO</span>
-      </h2>
-
-      <!-- Caja de precio con imagen -->
-      <div class="relative mb-3 border-2 border-[#956eef] rounded-2xl p-2">
-        <img
-          src="/price_transparent.png"
-          alt=""
-          class="w-full object-contain"
-        />
-        <div class="absolute inset-0 flex flex-col justify-center items-center">
-          <p
-            class="font-black text-sm uppercase tracking-widest line-through text-[#1e3a5f]/50 mb-1"
-          >
-            PRECIO ANTES: $53 USD
-          </p>
-          <p
-            class="leading-none text-[#1e3a5f]"
-            style="font-family: 'Caveat', cursive; font-weight: 700; font-size: clamp(2rem, 8vw, 3.5rem);"
-          >
-            HOY $28 USD
-          </p>
-        </div>
-      </div>
-
-      <!-- Subtexto precio -->
-      <p class="text-[#1e3a5f] font-semibold text-base mb-6">
-        Precio especial por tiempo limitado
-      </p>
-
-      <!-- Botón CTA -->
-      <a
-        href="#"
-        class="inline-block bg-[#956eef] font-black text-white text-base sm:text-lg uppercase tracking-wide px-10 py-4 rounded-2xl transition-all hover:scale-[1.03] shadow-lg mb-8 w-full"
-      >
-        QUIERO UNIRME<br />AL RETO
-      </a>
-
-      <!-- Métodos de pago -->
-      <div>
-        <h3 class="text-[#1e3a5f] font-black text-lg sm:text-xl uppercase mb-2">
-          MÉTODOS DE PAGO DISPONIBLES
-        </h3>
-        <p class="text-[#1e3a5f]/70 text-sm sm:text-base mb-5">
-          Aceptamos los siguientes métodos de pago para participantes de todo el
-          mundo:
+        <p class="lead">
+          Estoy harta de las dietas imposibles y las rutinas que te dejan tirada
+          a mitad de camino. Tu plan se adapta a tu vida real, no al revés. Y
+          cuando quieras rendirte, ahí voy a estar yo para no dejarte. Tu única
+          rival eres tú — y juntas te ganamos.
         </p>
-        <div class="flex items-center justify-center gap-6">
-          <img src="/zelle.png" alt="Zelle" class="h-6 md:h-8 object-contain" />
-          <img
-            src="/paypal.png"
-            alt="PayPal"
-            class="h-6 md:h-8 object-contain"
-          />
-          <img
-            src="/western_union.png"
-            alt="Western Union"
-            class="h-6 md:h-8 object-contain"
-          />
+        <div class="snf-cta-row reveal-up">
+          <a class="btn btn-cta btn-lg" href="/planes">
+            Estoy lista para cambiar
+            <span class="btn__go" set:html={ic.arrow} />
+          </a>
         </div>
       </div>
-      <img src="/next_start.png" alt="" class="w-full object-contain mt-6" />
-    </div>
+    </section>
 
-    <!-- Banner próxima fecha -->
-  </div>
-</section>
+    <!-- LO QUE OFREZCO -->
+    <section class="snf-section alt" id="ofrezco">
+      <div class="wrap">
+        <div class="snf-section__head reveal-up">
+          <p class="eyebrow">Lo que ofrezco</p>
+          <h2>
+            Un sistema completo
+            <span class="brush">para que llegues</span>
+          </h2>
+          <p class="lead">
+            No te vendo una rutina suelta. Te doy entrenamiento, comida y a mí
+            encima tuyo cada día. Todo junto, todo apuntando a tu meta.
+          </p>
+        </div>
+        <div class="snf-offer-grid">
+          {offers.map((o) => (
+            <div class={`snf-offer reveal-up${o.feature ? " feature" : ""}`}>
+              {o.feature ? (
+                <>
+                  <div>
+                    <div class="snf-offer__num">{o.n}</div>
+                    <h3>{o.title}</h3>
+                    <div class="snf-offer__tags">
+                      {o.tags.map((t) => <span class="snf-tag">{t}</span>)}
+                    </div>
+                  </div>
+                  <p>{o.body}</p>
+                </>
+              ) : (
+                <>
+                  <div class="snf-offer__num">{o.n}</div>
+                  <h3>{o.title}</h3>
+                  <p>{o.body}</p>
+                </>
+              )}
+            </div>
+          ))}
+        </div>
+        <div class="snf-cta-row reveal-up">
+          <a class="btn btn-cta btn-lg" href="/planes">
+            Mi momento es ahora
+            <span class="btn__go" set:html={ic.arrow} />
+          </a>
+        </div>
+      </div>
+    </section>
 
-<!-- ===== SOBRE SOYNATHAFIT ===== -->
-<section
-  class="py-16 md:py-24"
-  style="background: linear-gradient(90deg, #4f6fe8 0%, #1a3a8f 75%, #2d1a8f 100%)"
->
-  <div class="max-w-2xl mx-auto px-6 text-center">
-    <!-- Separador -->
-    <hr class="border-white mb-14 max-w-xs mx-auto border-1" />
+    <!-- CÓMO FUNCIONA / INCLUYE -->
+    <section class="snf-section dark" id="incluye">
+      <div class="wrap">
+        <div class="snf-section__head reveal-up">
+          <p class="eyebrow on-dark">Cómo funciona</p>
+          <h2>
+            Todo lo que incluye
+            <span class="brush on-dark">tu plan</span>
+          </h2>
+        </div>
+        <div class="snf-includes">
+          {includes.map((i) => (
+            <div class="snf-inc reveal-up">
+              <div class="snf-inc__ic" set:html={i.ic} />
+              <h3>{i.t}</h3>
+              <p>{i.s}</p>
+            </div>
+          ))}
+        </div>
+        <div class="snf-cta-row reveal-up">
+          <a class="btn btn-cta btn-lg" href="/planes">
+            Elijo mi mejor versión
+            <span class="btn__go" set:html={ic.arrow} />
+          </a>
+        </div>
+      </div>
+    </section>
 
-    <!-- Título -->
-    <h2
-      class="text-white font-black text-3xl sm:text-4xl md:text-5xl uppercase leading-tight mb-8"
-    >
-      SOBRE<br />SŌYNATHAFIT
-    </h2>
+    <!-- RESULTADOS -->
+    <section class="snf-section" id="resultados">
+      <div class="wrap">
+        <div class="snf-section__head reveal-up">
+          <p class="eyebrow">Resultados reales</p>
+          <h2>
+            Mujeres que ya le
+            <span class="brush">dieron</span>
+          </h2>
+          <p class="lead">
+            Ninguna empezó lista. Empezaron y ya. La próxima en esta lista
+            puedes ser tú.
+          </p>
+        </div>
+        <div class="snf-ba-grid">
+          {beforeAfter.map((b) => (
+            <div class="snf-ba reveal-up">
+              <div class="snf-ba__imgs">
+                <img class="snf-ba__img" src={b.img} alt={`Resultado real · ${b.who}`} loading="lazy" />
+                <span class="snf-ba__tag snf-ba__tag--a">Antes</span>
+                <span class="snf-ba__tag snf-ba__tag--b">Después</span>
+              </div>
+              <div class="snf-ba__body">
+                <h3>{b.title}</h3>
+                <span>{b.who}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div class="snf-cta-row reveal-up">
+          <a class="btn btn-cta btn-lg" href="/planes">
+            La próxima soy yo
+            <span class="btn__go" set:html={ic.arrow} />
+          </a>
+        </div>
+      </div>
+    </section>
 
-    <!-- Descripción -->
-    <p class="text-white text-base sm:text-lg leading-relaxed mb-6">
-      SoyNathaFit es un enfoque integral de bienestar que combina entrenamiento,
-      nutrición flexible y trabajo mental, ayudando a personas reales a
-      construir hábitos sostenibles sin extremos.
-    </p>
-    <p class="text-white text-base sm:text-lg leading-relaxed mb-12">
-      Este reto fue creado para acompañarte, guiarte y demostrarte que sí puedes
-      sostener un proceso cuando tienes la estructura correcta.
-    </p>
+    <!-- YOUTUBE + REDES -->
+    <section class="snf-section dark" id="comunidad">
+      <div class="wrap">
+        <div class="snf-section__head reveal-up">
+          <p class="eyebrow on-dark">Mi comunidad</p>
+          <h2>
+            Entrena conmigo
+            <span class="brush">cada día</span>
+          </h2>
+          <p class="lead">
+            Tips, rutinas y motivación real en mis redes. Mira el último video y
+            sígueme donde quieras — esto no para.
+          </p>
+        </div>
+        <div class="snf-comu">
+          <a
+            class="snf-yt reveal-up"
+            href={YT}
+            target="_blank"
+            rel="noopener"
+            aria-label="Ver mi canal de YouTube"
+          >
+            <img
+              class="snf-yt__thumb"
+              src={`https://i.ytimg.com/vi/${YT_ID}/hqdefault.jpg`}
+              alt="Último video de YouTube de SoyNathaFit"
+              loading="lazy"
+            />
+            <span class="snf-yt__play" set:html={ic.play} />
+            <span class="snf-yt__tag">YouTube · Nuevo video</span>
+          </a>
+          <div class="snf-social">
+            {social.map((s) => (
+              <a
+                class={`snf-soc snf-soc--${s.cls} reveal-up`}
+                href={s.href}
+                target="_blank"
+                rel="noopener"
+              >
+                <span class="snf-soc__ic" set:html={s.ic} />
+                <span class="snf-soc__txt">
+                  <strong>{s.name}</strong>
+                  <span>{s.handle}</span>
+                </span>
+                <span class="snf-soc__go">Seguir</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <!-- Banner rosa -->
-    <div class="inline-block bg-[#f206b3] rounded-xl px-8 py-1 mb-8">
-      <p
-        class="text-white font-black text-lg sm:text-xl uppercase tracking-wide"
-      >
-        ESTE PUEDE SER TU PUNTO DE PARTIDA
-      </p>
-    </div>
+    <!-- CTA FINAL -->
+    <section class="snf-final">
+      <div class="wrap">
+        <p class="eyebrow on-dark" style="justify-content:center;color:#fff;">Empieza hoy</p>
+        <h2>
+          Tu mejor versión está
+          <span class="brush on-dark" style="color:#fff;">esperándote</span>
+        </h2>
+        <p>
+          Agenda tu llamada conmigo y armamos tu plan hoy. Nada de "el lunes
+          empiezo". Dáale: no te pares, sigue, sigue, sigue.
+        </p>
+        <div class="snf-final__cta">
+          <a class="btn btn-light btn-lg" href={CAL} target="_blank" rel="noopener">
+            <span class="btn__ic" set:html={ic.calendar} />
+            Agenda una llamada conmigo
+          </a>
+          <a class="btn btn-outline btn-lg" href={IG} target="_blank" rel="noopener">
+            Sígueme en Instagram
+          </a>
+        </div>
+      </div>
+    </section>
 
-    <!-- Subtexto -->
-    <p class="text-white text-base sm:text-lg leading-relaxed mb-10">
-      No esperes al momento perfecto.<br />
-      Empieza hoy y acompáñanos durante estas 4 semanas.
-    </p>
+    <!-- FOOTER -->
+    <footer class="snf-footer">
+      <div class="wrap">
+        <div class="snf-footer__top">
+          <div>
+            <img src="/logos/snf-white.png" alt="SoyNathaFit" />
+            <p class="snf-footer__tag">
+              Entrenamiento personal con acompañamiento real. Tu transformación,
+              con método y con corazón.
+            </p>
+            <div class="snf-footer__social">
+              <a href={IG} target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+              <a href={WA} target="_blank" rel="noopener" aria-label="WhatsApp">WA</a>
+            </div>
+          </div>
+        </div>
+        <div class="snf-footer__bottom">
+          <span>© 2026 SoyNathaFit · Nathaly Díaz</span>
+          <span>Hecho con disciplina y cariño</span>
+        </div>
+      </div>
+    </footer>
 
-    <!-- Botón CTA -->
+    <!-- WHATSAPP FLOTANTE -->
     <a
-      href="#precio"
-      class="inline-block bg-white hover:bg-white/90 text-[#1e3a5f] font-black text-base sm:text-lg uppercase tracking-wide px-10 py-4 rounded-2xl transition-all hover:scale-[1.03] shadow-xl"
+      class="snf-fab"
+      href={WA}
+      target="_blank"
+      rel="noopener"
+      aria-label="Escríbeme por WhatsApp"
     >
-      ÚNETE AL RETO ONLINE<br />MASIVO AHORA
+      <span class="snf-fab__ic" set:html={waBrand} />
+      <span class="snf-fab__label">Escríbeme</span>
     </a>
-  </div>
-</section>
 
-<!-- ===== FOOTER ===== -->
-<footer class="bg-black border-t border-white/10 py-8">
-  <div
-    class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4"
-  >
-    <div class="flex items-start gap-1">
-      <img
-        src="/by_soy_nf.png"
-        alt="by SōyNathaFit"
-        class="w-1/4 object-contain"
-      />
-    </div>
-    <div class="flex items-center gap-4">
-      <button
-        id="open-terms"
-        class="text-gray-500 hover:text-white text-sm transition-colors underline underline-offset-2"
-      >
-        Términos y Condiciones
-      </button>
-      <span class="text-gray-700 text-xs">·</span>
-      <span class="text-gray-600 text-sm"
-        >© 2026 SoyNathaFit. Todos los derechos reservados.</span
-      >
-    </div>
-  </div>
-</footer>
-
-<!-- ===== MODAL TÉRMINOS ===== -->
-<dialog
-  id="terms-modal"
-  class="fixed inset-0 z-50 w-full max-w-2xl mx-auto my-8 rounded-2xl bg-white shadow-2xl p-0 backdrop:bg-black/60"
->
-  <div
-    class="flex items-center justify-between px-8 py-5 border-b border-gray-100 sticky top-0 bg-white rounded-t-2xl z-10"
-  >
-    <h2 class="font-black text-[#1e3a5f] text-lg uppercase tracking-wide">
-      Términos y Condiciones
-    </h2>
-    <button
-      id="close-terms"
-      class="w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors text-gray-500 font-black text-lg leading-none"
-      aria-label="Cerrar"
-    >
-      ×
-    </button>
-  </div>
-  <div class="px-8 py-6 overflow-y-auto max-h-[70vh]">
-    <pre
-      class="whitespace-pre-wrap font-jakarta text-sm text-[#1e3a5f]/80 leading-relaxed">{terminos}</pre>
-  </div>
-  <div
-    class="px-8 py-5 border-t border-gray-100 sticky bottom-0 bg-white rounded-b-2xl"
-  >
-    <button
-      id="close-terms-btn"
-      class="bg-[#e8601c] hover:bg-[#cf5218] text-white font-black text-sm uppercase tracking-wide px-8 py-3 rounded-full transition-all w-full"
-    >
-      Entendido
-    </button>
-  </div>
-</dialog>
-
-<script>
-  const modal = document.getElementById("terms-modal") as HTMLDialogElement;
-  document
-    .getElementById("open-terms")
-    ?.addEventListener("click", () => modal.showModal());
-  document
-    .getElementById("close-terms")
-    ?.addEventListener("click", () => modal.close());
-  document
-    .getElementById("close-terms-btn")
-    ?.addEventListener("click", () => modal.close());
-  modal?.addEventListener("click", (e) => {
-    if (e.target === modal) modal.close();
-  });
-</script>
+    <script>
+      // Reveal al hacer scroll
+      function initReveal() {
+        const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        const els = Array.from(document.querySelectorAll<HTMLElement>(".reveal-up"));
+        if (reduced || !("IntersectionObserver" in window)) {
+          els.forEach((e) => e.classList.add("is-revealed"));
+          return;
+        }
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((en) => {
+              if (en.isIntersecting) {
+                en.target.classList.add("is-revealed");
+                io.unobserve(en.target);
+              }
+            });
+          },
+          { threshold: 0.14, rootMargin: "0px 0px -8% 0px" }
+        );
+        els.forEach((e) => io.observe(e));
+      }
+      // Burger menu
+      const burger = document.querySelector(".snf-burger");
+      const nav = document.querySelector(".snf-nav");
+      burger?.addEventListener("click", () => {
+        nav?.classList.toggle("is-open");
+      });
+      nav?.querySelectorAll("a").forEach((a) =>
+        a.addEventListener("click", () => nav.classList.remove("is-open"))
+      );
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initReveal);
+      } else {
+        initReveal();
+      }
+    </script>
+  </body>
+</html>
